@@ -1,0 +1,151 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.0, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence
+plugins: anyio-4.9.0, langsmith-0.7.6, asyncio-1.3.0, cov-7.0.0, mock-3.15.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/test_agent.py::test_calculator_valid PASSED                        [ 16%]
+tests/test_agent.py::test_calculator_invalid PASSED                      [ 33%]
+tests/test_agent.py::test_sql_query_tool PASSED                          [ 50%]
+tests/test_agent.py::test_agent_construction FAILED                      [ 66%]
+tests/test_agent.py::test_json_history_persistence PASSED                [ 83%]
+tests/test_agent.py::test_agent_memory_initialization FAILED             [100%]
+
+================================== FAILURES ===================================
+___________________________ test_agent_construction ___________________________
+
+mock_retriever = <MagicMock name='build_advanced_retriever' id='1753886946224'>
+mock_llm = <MagicMock name='ChatGoogleGenerativeAI' id='1753886077536'>
+
+    @patch("agent.ChatGoogleGenerativeAI")
+    @patch("agent.build_advanced_retriever")
+    def test_agent_construction(mock_retriever, mock_llm):
+        """Test that the agent executor is built with the correct tools."""
+        # Setup mocks
+        mock_retrieval_instance = MagicMock()
+        mock_retriever.return_value = mock_retrieval_instance
+    
+        os.environ["GOOGLE_API_KEY"] = "fake_key"
+    
+        docs = [Document(page_content="test doc")]
+>       agent_executor = build_business_agent(docs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_agent.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+agent.py:137: in build_business_agent
+    memory = ConversationSummaryBufferMemory(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py:115: in __init__
+    super().__init__(*args, **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ConversationSummaryBufferMemory(), args = ()
+kwargs = {'chat_memory': <agent.JSONFileChatMessageHistory object at 0x000001985BB33E30>, 'llm': <MagicMock name='ChatGoogleGenerativeAI()' id='1753887012864'>, 'max_token_limit': 2000, 'memory_key': 'chat_history', ...}
+
+    def warn_if_direct_instance(
+        self: Any, *args: Any, **kwargs: Any
+    ) -> Any:
+        """Warn that the class is in beta."""
+        nonlocal warned
+        if not warned and type(self) is obj and not is_caller_internal():
+            warned = True
+            emit_warning()
+>       return wrapped(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ConversationSummaryBufferMemory
+E       llm
+E         Input should be a valid dictionary or instance of BaseLanguageModel [type=model_type, input_value=<MagicMock name='ChatGoog...I()' id='1753887012864'>, input_type=MagicMock]
+E           For further information visit https://errors.pydantic.dev/2.12/v/model_type
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: ValidationError
+______________________ test_agent_memory_initialization _______________________
+
+mock_retriever = <MagicMock name='build_advanced_retriever' id='1753886945360'>
+mock_llm = <MagicMock name='ChatGoogleGenerativeAI' id='1753886943728'>
+tmp_path = WindowsPath('C:/Users/MUHAMMAD HANZLA/AppData/Local/Temp/pytest-of-MUHAMMAD HANZLA/pytest-2/test_agent_memory_initializati0')
+
+    @patch("agent.ChatGoogleGenerativeAI")
+    @patch("agent.build_advanced_retriever")
+    def test_agent_memory_initialization(mock_retriever, mock_llm, tmp_path):
+        """Test that the agent is initialized with ConversationSummaryBufferMemory."""
+        os.environ["GOOGLE_API_KEY"] = "fake_key"
+        chat_file = str(tmp_path / "chat.json")
+    
+        docs = [Document(page_content="test")]
+>       agent_executor = build_business_agent(docs, chat_history_file=chat_file)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_agent.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+agent.py:137: in build_business_agent
+    memory = ConversationSummaryBufferMemory(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py:115: in __init__
+    super().__init__(*args, **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ConversationSummaryBufferMemory(), args = ()
+kwargs = {'chat_memory': <agent.JSONFileChatMessageHistory object at 0x00000198349BE990>, 'llm': <MagicMock name='ChatGoogleGenerativeAI()' id='1753886937968'>, 'max_token_limit': 2000, 'memory_key': 'chat_history', ...}
+
+    def warn_if_direct_instance(
+        self: Any, *args: Any, **kwargs: Any
+    ) -> Any:
+        """Warn that the class is in beta."""
+        nonlocal warned
+        if not warned and type(self) is obj and not is_caller_internal():
+            warned = True
+            emit_warning()
+>       return wrapped(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ConversationSummaryBufferMemory
+E       llm
+E         Input should be a valid dictionary or instance of BaseLanguageModel [type=model_type, input_value=<MagicMock name='ChatGoog...I()' id='1753886937968'>, input_type=MagicMock]
+E           For further information visit https://errors.pydantic.dev/2.12/v/model_type
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: ValidationError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.MessageMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.ScalarMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47
+  C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+  
+  All support for the `google.generativeai` package has ended. It will no longer be receiving 
+  updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+  See README for more details:
+  
+  https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+  
+    from google.generativeai.caching import CachedContent  # type: ignore[import]
+
+tests/test_agent.py::test_agent_construction
+  C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\agent.py:137: LangChainDeprecationWarning: Please see the migration guide at: https://python.langchain.com/docs/versions/migrating_memory/
+    memory = ConversationSummaryBufferMemory(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_agent.py::test_agent_construction - pydantic_core._pydantic...
+FAILED tests/test_agent.py::test_agent_memory_initialization - pydantic_core....
+================== 2 failed, 4 passed, 4 warnings in 14.66s ===================

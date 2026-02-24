@@ -1,0 +1,9 @@
+[deploy]
+# Streamlit Community Cloud deployment config
+# https://docs.streamlit.io/streamlit-community-cloud
+
+[[deploy.secrets_file]]
+path = ".env"
+
+[deploy.resources]
+# memory_mb = 1024  # Uncomment for paid tier

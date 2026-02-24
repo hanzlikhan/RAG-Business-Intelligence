@@ -1,0 +1,50 @@
+C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:12: DeprecationWarning: Substituting font arial by core font helvetica - This is deprecated since v2.7.8, and will soon be removed
+  pdf.set_font("Arial", size=16)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:13: DeprecationWarning: The parameter "txt" has been renamed to "text" in 2.7.6
+  pdf.cell(200, 10, txt="IntelForge AI-BOS Architecture Document", ln=True, align='C')
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:13: DeprecationWarning: The parameter "ln" is deprecated since v2.5.2. Instead of ln=True use new_x=XPos.LMARGIN, new_y=YPos.NEXT.
+  pdf.cell(200, 10, txt="IntelForge AI-BOS Architecture Document", ln=True, align='C')
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:14: DeprecationWarning: Substituting font arial by core font helvetica - This is deprecated since v2.7.8, and will soon be removed
+  pdf.set_font("Arial", size=12)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:16: DeprecationWarning: The parameter "txt" has been renamed to "text" in 2.7.6
+  pdf.multi_cell(0, 10, txt="This document serves as the foundational text for testing the RAG ingestion pipeline. " * 10)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:20: DeprecationWarning: Substituting font arial by core font helvetica - This is deprecated since v2.7.8, and will soon be removed
+  pdf.set_font("Arial", size=14)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:21: DeprecationWarning: The parameter "txt" has been renamed to "text" in 2.7.6
+  pdf.cell(200, 10, txt="Database Infrastructure", ln=True)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:21: DeprecationWarning: The parameter "ln" is deprecated since v2.5.2. Instead of ln=True use new_x=XPos.LMARGIN, new_y=YPos.NEXT.
+  pdf.cell(200, 10, txt="Database Infrastructure", ln=True)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:22: DeprecationWarning: Substituting font arial by core font helvetica - This is deprecated since v2.7.8, and will soon be removed
+  pdf.set_font("Arial", size=12)
+C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py:23: DeprecationWarning: The parameter "txt" has been renamed to "text" in 2.7.6
+  pdf.multi_cell(0, 10, txt="Supabase is utilized as the primary vector store. We use the pgvector extension with an HNSW index. This allows for extremely fast similarity searches on 768-dimensional vectors produced by Gemini. " * 8)
+
+[1] Generated sample PDF: sample_document.pdf (Size: 2039 bytes)
+
+[2] Testing load_and_chunk_files on the PDF...
+Traceback (most recent call last):
+  File "C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py", line 35, in <module>
+    print(f"    \u2705 Successfully extracted {len(chunks)} chunks!")
+  File "C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 4: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\test_pdf_upload.py", line 53, in <module>
+    print(f"    \u274c Error during ingestion: {e}")
+  File "C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 4: character maps to <undefined>

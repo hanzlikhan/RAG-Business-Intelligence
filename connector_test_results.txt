@@ -1,0 +1,114 @@
+2026-02-24 04:10:39 | INFO     | connectors | CRM: loaded 10 records from C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\crm_data.json.
+2026-02-24 04:10:43 | INFO     | connectors | Gmail: fetched 5 messages.
+2026-02-24 04:10:44 | INFO     | connectors | Slack: bot joined channel C097LLQ3010.
+2026-02-24 04:10:45 | INFO     | connectors | Slack: fetched 1 messages from channel C097LLQ3010.
+2026-02-24 04:10:46 | INFO     | connectors | Slack: bot joined channel C097LLQ3010.
+2026-02-24 04:10:46 | INFO     | connectors | Slack: fetched 1 messages from channel C097LLQ3010.
+2026-02-24 04:10:48 | INFO     | connectors | Gmail: fetched 5 messages.
+2026-02-24 04:10:48 | INFO     | connectors | CRM: loaded 10 records from C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\crm_data.json.
+2026-02-24 04:10:48 | INFO     | connectors | Multi-source ingestion complete: 16 total documents from 3 sources.
+
+#######################################################
+  INTELLIFORGE -- FULL CONNECTOR TEST SUITE
+#######################################################
+
+=======================================================
+  TEST 1 -- PII Anonymizer
+=======================================================
+  [PASS]  Email anonymized correctly  =>  Contact: [ANONYMIZED_EMAIL]
+  [PASS]  Phone anonymized correctly  =>  Call +[ANONYMIZED_PHONE] now
+  [PASS]  SSN anonymized correctly  =>  Employee SSN: [ANONYMIZED_SSN]
+
+=======================================================
+  TEST 2 -- CRM Connector  (crm_data.json)
+=======================================================
+  [PASS]  Loaded 10 CRM records from file
+  [PASS]  All docs tagged with source='crm'
+  [PASS]  PII clean -- no raw emails in indexed content
+  [PASS]  Sample metadata: {'source': 'crm', 'file': 'C:\\Users\\MUHAMMAD HANZLA\\Desktop\\Rag\\Business-intelligence\\crm_data.json', 'record_index': 0, 'timestamp': '2026-02-24 04:10:39'}
+
+  -------------------------------------------------------
+  Sample Record Preview:
+  company: Acme Technologies
+industry: Software
+contact_name: Ali Hassan
+contact_title: CTO
+email: [ANONYMIZED_EMAIL]
+phone: +[ANONYMIZED_PHONE]
+deal_value: $500,000
+deal_stage: Negotiation
+priority: High
+notes: Acme Technologies is our biggest prospect this quarter. They want a full IntelForge enterprise deployment with custom Slack integration, RAG
+  -------------------------------------------------------
+  [PASS]  Industries: Artificial Intelligence, EdTech, Finance, Healthcare, Manufacturing, Media & Publishing, Real Estate, Retail, Software, Supply Chain
+
+=======================================================
+  TEST 3 -- Gmail Connector
+=======================================================
+  [INFO]  token.json found:       YES
+  [INFO]  credentials.json found: YES
+  [PASS]  Fetched 5 Gmail messages
+  [PASS]  All docs tagged source='gmail'
+
+  -------------------------------------------------------
+  Sample Email Preview:
+  Subject: Security alert
+
+[image: Google]
+You allowed AI Employee access to some of your Google Account data
+
+
+[ANONYMIZED_EMAIL]
+
+If you didn’t allow AI Employee access to some of your Google Account data,
+someone else may be trying to access your Google Account data.
+
+Take a moment now to
+  -------------------------------------------------------
+
+=======================================================
+  TEST 4 -- Slack Connector
+=======================================================
+  [INFO]  SLACK_BOT_TOKEN set:   YES
+  [INFO]  SLACK_CHANNEL_ID set:  YES -- C097LLQ3010
+  [PASS]  Fetched 1 Slack messages from channel C097LLQ3010
+  [PASS]  All docs tagged source='slack'
+
+  -------------------------------------------------------
+  Sample Slack Message Preview:
+  <@U0AG7LWBHRV> has joined the channel
+  -------------------------------------------------------
+
+=======================================================
+  TEST 5 -- Unified Multi-Source Ingestion
+=======================================================
+  [PASS]  Total documents ingested across all sources: 16
+
+  -------------------------------------------------------
+  Source Breakdown:
+    [OK]  crm               : 10 doc(s)
+    [OK]  gmail             : 5 doc(s)
+    [OK]  slack             : 1 doc(s)
+  -------------------------------------------------------
+  [PASS]  PII safety check PASSED -- zero raw emails in all indexed docs
+
+  -------------------------------------------------------
+  Cross-Source Keyword Search Results:
+    'enterprise  '  =>   1 hit(s)  from: ['crm']
+    'IntelForge  '  =>   9 hit(s)  from: ['crm']
+    'KPI         '  =>   3 hit(s)  from: ['crm']
+    'RAG         '  =>   5 hit(s)  from: ['crm', 'gmail']
+    'pilot       '  =>   2 hit(s)  from: ['crm']
+  -------------------------------------------------------
+
+=======================================================
+  FINAL RESULTS SUMMARY
+=======================================================
+  [PASS]  PII Anonymizer
+  [PASS]  CRM Connector
+  [PASS]  Gmail Connector
+  [PASS]  Slack Connector
+  [PASS]  Unified Ingestion
+
+  *** ALL TESTS PASSED -- IntelForge connectors are fully ready! ***
+

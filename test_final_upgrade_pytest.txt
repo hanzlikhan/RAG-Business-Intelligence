@@ -1,0 +1,252 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.0, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence
+plugins: anyio-4.9.0, langsmith-0.7.6, asyncio-1.3.0, cov-7.0.0, mock-3.15.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 21 items
+
+tests/test_llm.py::test_response_not_empty FAILED                        [  4%]
+tests/test_llm.py::test_validate_query_empty PASSED                      [  9%]
+tests/test_llm.py::test_validate_query_too_long PASSED                   [ 14%]
+tests/test_llm.py::test_validate_query_valid PASSED                      [ 19%]
+tests/test_llm.py::test_build_llm_without_key PASSED                     [ 23%]
+tests/test_rag.py::test_embed_single_text PASSED                         [ 28%]
+tests/test_rag.py::test_embed_batch_texts PASSED                         [ 33%]
+tests/test_rag.py::test_embed_empty_string PASSED                        [ 38%]
+tests/test_rag.py::test_embed_empty_list PASSED                          [ 42%]
+tests/test_rag.py::test_embed_invalid_type PASSED                        [ 47%]
+tests/test_rag.py::test_lru_cache_working PASSED                         [ 52%]
+tests/test_rag.py::test_load_and_chunk_files_valid_txt PASSED            [ 57%]
+tests/test_rag.py::test_load_and_chunk_files_empty_list PASSED           [ 61%]
+tests/test_rag.py::test_load_and_chunk_files_invalid_path PASSED         [ 66%]
+tests/test_rag.py::test_load_and_chunk_files_unsupported_ext PASSED      [ 71%]
+tests/test_rag.py::test_upsert_pinecone_missing_key_skipped SKIPPED      [ 76%]
+tests/test_rag.py::test_validate_rag_query_valid PASSED                  [ 80%]
+tests/test_rag.py::test_validate_rag_query_too_short PASSED              [ 85%]
+tests/test_rag.py::test_validate_rag_query_invalid_type PASSED           [ 90%]
+tests/test_rag.py::test_retrieval_diversity PASSED                       [ 95%]
+tests/test_rag.py::test_async_chain_invocation FAILED                    [100%]
+
+================================== FAILURES ===================================
+___________________________ test_response_not_empty ___________________________
+
+llm = ChatGoogleGenerativeAI(model='models/gemini-2.5-flash', google_api_key=SecretStr('**********'), temperature=0.2, clien...e_v1beta.services.generative_service.client.GenerativeServiceClient object at 0x000002772F802840>, default_metadata=())
+
+    def test_response_not_empty(llm) -> None:
+        """
+        GIVEN a valid query
+        WHEN the LLM is called directly
+        THEN the response must be non-empty.
+        """
+        from utils import validate_query
+    
+        query = validate_query("What is RAG?")
+        # Direct invoke call to test that the LLM is responsive
+>       response = llm.invoke(query)
+                   ^^^^^^^^^^^^^^^^^
+
+tests\test_llm.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\language_models\chat_models.py:395: in invoke
+    self.generate_prompt(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\language_models\chat_models.py:1025: in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\language_models\chat_models.py:842: in generate
+    self._generate_with_cache(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\language_models\chat_models.py:1091: in _generate_with_cache
+    result = self._generate(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:946: in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:196: in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:330: in wrapped_f
+    return self(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:467: in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:368: in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:410: in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:183: in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:449: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\tenacity\__init__.py:470: in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:194: in _chat_with_retry
+    raise e
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:178: in _chat_with_retry
+    return generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py:835: in generate_content
+    response = rpc(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\gapic_v1\method.py:131: in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\retry\retry_unary.py:293: in retry_wrapped_func
+    return retry_target(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\retry\retry_unary.py:153: in retry_target
+    _retry_error_helper(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\retry\retry_base.py:212: in _retry_error_helper
+    raise final_exc from source_exc
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\retry\retry_unary.py:144: in retry_target
+    result = target()
+             ^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\timeout.py:130: in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (model: "models/gemini-2.5-flash"
+contents {
+  parts {
+    text: "What is RAG?"
+  }
+  role: "user"
+}
+generation_config {
+  candidate_count: 1
+  temperature: 0.2
+}
+,)
+kwargs = {'metadata': [('x-goog-request-params', 'model=models/gemini-2.5-flash'), ('x-goog-api-client', 'langchain-google-gena...-ChatGoogleGenerativeAI gl-python/3.12.0 grpc/1.71.0 gax/2.24.2 gccl/2.0.7-ChatGoogleGenerativeAI')], 'timeout': 600.0}
+
+    @functools.wraps(callable_)
+    def error_remapped_callable(*args, **kwargs):
+        try:
+            return callable_(*args, **kwargs)
+        except grpc.RpcError as exc:
+>           raise exceptions.from_grpc_error(exc) from exc
+E           google.api_core.exceptions.ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+E           * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+E           Please retry in 30.572824119s. [links {
+E             description: "Learn more about Gemini API quotas"
+E             url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+E           }
+E           , violations {
+E             quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+E             quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+E             quota_dimensions {
+E               key: "model"
+E               value: "gemini-2.5-flash"
+E             }
+E             quota_dimensions {
+E               key: "location"
+E               value: "global"
+E             }
+E             quota_value: 20
+E           }
+E           , retry_delay {
+E             seconds: 30
+E           }
+E           ]
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\google\api_core\grpc_helpers.py:78: ResourceExhausted
+------------------------------ Captured log call ------------------------------
+WARNING  langchain_google_genai.chat_models:before_sleep.py:65 Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it raised ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 32.883250965s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 32
+}
+].
+_________________________ test_async_chain_invocation _________________________
+
+    @pytest.mark.asyncio
+    async def test_async_chain_invocation():
+        """Stress test the chain with ainvoke."""
+        from main import build_llm
+        from rag import build_rag_chain
+        from langchain_core.documents import Document
+        from unittest.mock import MagicMock
+    
+        mock_retriever = MagicMock()
+        # Simple mock return for aget_relevant_documents
+        mock_retriever.aget_relevant_documents.return_value = [Document(page_content="test")]
+    
+        llm = build_llm()
+>       chain = build_rag_chain(llm, mock_retriever)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_rag.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rag.py:458: in build_rag_chain
+    chain = RetrievalQA.from_chain_type(
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain\chains\retrieval_qa\base.py:118: in from_chain_type
+    return cls(combine_documents_chain=combine_documents_chain, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\_api\deprecation.py:226: in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = RetrievalQA(), args = ()
+kwargs = {'combine_documents_chain': StuffDocumentsChain(verbose=False, llm_chain=LLMChain(verbose=False, prompt=PromptTemplate...nt}'), document_variable_name='context'), 'retriever': <MagicMock id='2710923946000'>, 'return_source_documents': True}
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """"""  # noqa: D419  # Intentional blank docstring
+>       super().__init__(*args, **kwargs)
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for RetrievalQA
+E       retriever
+E         Input should be a valid dictionary or instance of BaseRetriever [type=model_type, input_value=<MagicMock id='2710923946000'>, input_type=MagicMock]
+E           For further information visit https://errors.pydantic.dev/2.12/v/model_type
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_core\load\serializable.py:115: ValidationError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.MessageMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.ScalarMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47
+  C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+  
+  All support for the `google.generativeai` package has ended. It will no longer be receiving 
+  updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+  See README for more details:
+  
+  https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+  
+    from google.generativeai.caching import CachedContent  # type: ignore[import]
+
+tests/test_rag.py::test_load_and_chunk_files_valid_txt
+  C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence\rag.py:244: DeprecationWarning: There is no current event loop
+    loop = asyncio.get_event_loop()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_llm.py::test_response_not_empty - google.api_core.exception...
+FAILED tests/test_rag.py::test_async_chain_invocation - pydantic_core._pydant...
+============ 2 failed, 18 passed, 1 skipped, 4 warnings in 20.67s =============

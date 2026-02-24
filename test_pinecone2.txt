@@ -1,0 +1,15 @@
+C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+2026-02-24 00:40:29 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:40:29 | ERROR    | __main__ | RAG Demo failed: 'charmap' codec can't encode character '\u2705' in position 4: character maps to <undefined>
+
+[0] Verifying Pinecone Setup...
+
+[1] Starting Ingestion Pipeline (Async Loading + Splitting)...

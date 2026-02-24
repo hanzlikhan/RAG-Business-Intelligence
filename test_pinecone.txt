@@ -1,0 +1,19 @@
+C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+2026-02-24 00:39:22 | INFO     | rag | Creating Pinecone index 'ai-bos' (this may take a minute)...
+2026-02-24 00:39:29 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:39:29 | ERROR    | rag | Ingestion pipeline failed: This event loop is already running
+2026-02-24 00:39:29 | ERROR    | __main__ | RAG Demo failed: This event loop is already running
+
+[0] Verifying Pinecone Setup...
+
+[1] Starting Ingestion Pipeline (Async Loading + Splitting)...
+sys:1: RuntimeWarning: coroutine 'ingest_documents_async' was never awaited
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback

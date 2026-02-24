@@ -1,0 +1,38 @@
+C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+2026-02-24 00:54:23 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:54:24 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:54:24 | INFO     | rag | Embedding batch of 2 items...
+2026-02-24 00:54:27 | INFO     | rag | Upserted batch of 2. Total: 2/2
+2026-02-24 00:54:27 | INFO     | rag | Successfully finished upserting 2 chunks to Pinecone.
+2026-02-24 00:54:27 | INFO     | rag | Building advanced retriever...
+2026-02-24 00:54:36 | INFO     | __main__ | Response length: 36 characters, Latency: 8.8423 seconds
+
+[0] Verifying Pinecone Setup...
+
+[1] Starting Ingestion Pipeline (Async Loading + Splitting)...
+    [SUCCESS] Ingestion complete! Chunks generated: 2
+
+[2] Synchronizing vectors to Pinecone Cloud (Batched Upsert)...
+    [SUCCESS] Upsert Complete! Vectors safely stored in 'ai-bos' namespace.
+
+[3] User Question:
+"Who is the architect of IntelForge?"
+
+[4] Building Ensemble Retriever & LLM Reranker...
+
+[5] Building RetrievalQA Chain...
+
+[6] Querying LLM with Enhanced RAG Chain...
+
+--- Gemini RAG Response (Latency: 8.8423s) ---
+Mr. Hanzla is the primary architect.
+---------------------------------------------------
+Sources used: 1

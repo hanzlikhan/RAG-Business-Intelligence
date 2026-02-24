@@ -1,0 +1,64 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.0, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\MUHAMMAD HANZLA\Desktop\Rag\Business-intelligence
+plugins: anyio-4.9.0, langsmith-0.7.6, asyncio-1.3.0, cov-7.0.0, mock-3.15.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+tests/test_agent.py::test_calculator_valid PASSED                        [ 25%]
+tests/test_agent.py::test_calculator_invalid PASSED                      [ 50%]
+tests/test_agent.py::test_sql_query_tool PASSED                          [ 75%]
+tests/test_agent.py::test_agent_construction FAILED                      [100%]
+
+================================== FAILURES ===================================
+___________________________ test_agent_construction ___________________________
+
+mock_retriever = <MagicMock name='build_advanced_retriever' id='2340618971008'>
+mock_llm = <MagicMock name='ChatGoogleGenerativeAI' id='2340619046304'>
+
+    @patch("agent.ChatGoogleGenerativeAI")
+    @patch("agent.build_advanced_retriever")
+    def test_agent_construction(mock_retriever, mock_llm):
+        """Test that the agent executor is built with the correct tools."""
+        # Setup mocks
+        mock_retrieval_instance = MagicMock()
+        mock_retriever.return_value = mock_retrieval_instance
+    
+        os.environ["GOOGLE_API_KEY"] = "fake_key"
+    
+        docs = [Document(page_content="test doc")]
+        agent_executor = build_business_agent(docs)
+    
+        # Check tool count
+        assert len(agent_executor.tools) == 4
+        tool_names = [t.name for t in agent_executor.tools]
+        assert "calculator" in tool_names
+        assert "retrieval_tool" in tool_names
+        assert "sql_query_tool" in tool_names
+>       assert "python_repl" in tool_names
+E       AssertionError: assert 'python_repl' in ['retrieval_tool', 'Python_REPL', 'calculator', 'sql_query_tool']
+
+tests\test_agent.py:64: AssertionError
+============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.MessageMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: Type google._upb._message.ScalarMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+
+..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47
+  C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+  
+  All support for the `google.generativeai` package has ended. It will no longer be receiving 
+  updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+  See README for more details:
+  
+  https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+  
+    from google.generativeai.caching import CachedContent  # type: ignore[import]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_agent.py::test_agent_construction - AssertionError: assert ...
+================== 1 failed, 3 passed, 3 warnings in 17.55s ===================

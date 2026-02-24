@@ -1,0 +1,37 @@
+C:\Users\MUHAMMAD HANZLA\AppData\Local\Programs\Python\Python312\Lib\site-packages\langchain_google_genai\chat_models.py:47: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  from google.generativeai.caching import CachedContent  # type: ignore[import]
+2026-02-24 00:49:13 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:49:14 | INFO     | rag | Pinecone index 'ai-bos' is ready.
+2026-02-24 00:49:15 | INFO     | rag | Embedding batch of 2 items...
+2026-02-24 00:49:18 | INFO     | rag | Upserted batch of 2. Total: 2/2
+2026-02-24 00:49:18 | INFO     | rag | Successfully finished upserting 2 chunks to Pinecone.
+2026-02-24 00:49:18 | INFO     | rag | Building advanced retriever...
+2026-02-24 00:49:21 | ERROR    | __main__ | RAG Demo failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 23 Feb 2026 19:49:21 GMT', 'Content-Type': 'application/json', 'Content-Length': '103', 'Connection': 'keep-alive', 'x-pinecone-request-latency-ms': '618', 'x-envoy-upstream-service-time': '48', 'x-pinecone-response-duration-ms': '620', 'server': 'envoy'})
+HTTP response body: {"code":3,"message":"Vector dimension 3072 does not match the dimension of the index 768","details":[]}
+
+
+[0] Verifying Pinecone Setup...
+
+[1] Starting Ingestion Pipeline (Async Loading + Splitting)...
+    [SUCCESS] Ingestion complete! Chunks generated: 2
+
+[2] Synchronizing vectors to Pinecone Cloud (Batched Upsert)...
+    [SUCCESS] Upsert Complete! Vectors safely stored in 'ai-bos' namespace.
+
+[3] User Question:
+"Who is the architect of IntelForge?"
+
+[4] Building Ensemble Retriever & LLM Reranker...
+
+[5] Building RetrievalQA Chain...
+
+[6] Querying LLM with Enhanced RAG Chain...

@@ -1,0 +1,52 @@
+﻿# ── AI-BOS Requirements ────────────────────────────────────────────────────────
+# Python 3.11+ required
+# Install: pip install -r requirements.txt
+
+# ── Core Streamlit ──────────────────────────────────────────────────────────────
+streamlit==1.32.2
+
+# ── Google / Gemini AI ─────────────────────────────────────────────────────────
+google-generativeai==0.8.6
+langchain-google-genai==2.0.7
+google-api-python-client==2.190.0
+google-auth==2.48.0
+google-auth-httplib2==0.3.0
+google-auth-oauthlib==1.2.4
+
+# ── LangChain Core ─────────────────────────────────────────────────────────────
+langchain==0.3.27
+langchain-core==0.3.83
+langchain-community==0.3.31
+langchain-pinecone==0.2.13
+
+# ── Vector Store ───────────────────────────────────────────────────────────────
+pinecone-client==6.0.0
+
+# ── Data & Visualization ───────────────────────────────────────────────────────
+pandas==2.3.1
+plotly==6.3.0
+numpy==1.26.4
+
+# ── Document Processing ────────────────────────────────────────────────────────
+pypdf==6.7.2
+python-docx==1.2.0
+Pillow==10.4.0
+
+# ── Slack Connector ────────────────────────────────────────────────────────────
+slack-sdk>=3.27.0
+
+# ── Utilities ──────────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
+tenacity==8.3.0
+tqdm==4.67.3
+requests==2.32.5
+
+# ── Testing ────────────────────────────────────────────────────────────────────
+pytest==9.0.2
+pytest-cov==7.0.0
+pytest-mock==3.15.1
+
+# ── Dev Tools (optional, comment out in prod) ───────────────────────────────────
+# ruff>=0.3.0
+# black>=24.0.0
+# isort>=5.13.0
