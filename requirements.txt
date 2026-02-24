@@ -3,7 +3,7 @@
 # Install: pip install -r requirements.txt
 
 # ── Core Streamlit ──────────────────────────────────────────────────────────────
-streamlit==1.32.2
+streamlit>=1.32.2
 
 # ── Google / Gemini AI ─────────────────────────────────────────────────────────
 google-generativeai==0.8.6
@@ -14,10 +14,10 @@ google-auth-httplib2==0.3.0
 google-auth-oauthlib==1.2.4
 
 # ── LangChain Core ─────────────────────────────────────────────────────────────
-langchain==0.3.27
-langchain-core==0.3.83
-langchain-community==0.3.31
-langchain-pinecone==0.2.13
+langchain>=0.3.27
+langchain-core>=0.3.83
+langchain-community>=0.3.31
+langchain-pinecone>=0.2.13
 
 # ── Vector Store ───────────────────────────────────────────────────────────────
 pinecone-client==6.0.0
@@ -25,7 +25,7 @@ pinecone-client==6.0.0
 # ── Data & Visualization ───────────────────────────────────────────────────────
 pandas==2.3.1
 plotly==6.3.0
-numpy==1.26.4
+numpy>=1.26.4
 
 # ── Document Processing ────────────────────────────────────────────────────────
 pypdf==6.7.2
