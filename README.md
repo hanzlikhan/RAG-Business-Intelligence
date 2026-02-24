@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![CI](https://img.shields.io/github/actions/workflow/status/your-org/ai-bos/ci.yml?style=for-the-badge&label=CI)](https://github.com/your-org/ai-bos/actions)
 
-> 🚀 **[Live Demo →](https://your-app.streamlit.app)** &nbsp;|&nbsp; 📹 **[Video Walkthrough →](#demo)**
+> 🚀 **[Live Demo →]((https://rag-business-intelligence-han.streamlit.app/))** &nbsp;|&nbsp; 📹 **[Video Walkthrough →](#demo)**
 
 </div>
 
